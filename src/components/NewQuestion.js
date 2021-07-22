@@ -1,4 +1,5 @@
 import React, { Component} from "react";
+import { connect } from 'react-redux'
 import {handleAddQuestion} from "../actions/questions";
 import authedUser from "../reducers/autheduser";
 
@@ -9,7 +10,6 @@ class NewQuestion extends Component {
   }
 
   handleChange = (e) => {
-    // todo - setstate for options
     const option = e.target.className
     const text = e.target.value
     this.setState(() => ({
@@ -20,7 +20,9 @@ class NewQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { optionOneText, optionTwoText } = this.state
-    //todo add question to store
+    const { dispatch } = this.props
+
+    dispatch(handleAddQuestion(optionOneText, optionTwoText))
 
     this.setState(() => ({
       optionOneText: '',
@@ -32,7 +34,6 @@ class NewQuestion extends Component {
     const {optionOneText, optionTwoText } = this.state
 
     // todo redirect to results view when submitted
-    console.log('state', this.state)
     return (
       <div className='question'>
         <span className='question-header'>Create New Question</span>
@@ -64,4 +65,4 @@ class NewQuestion extends Component {
   }
 }
 
-export default NewQuestion
+export default connect()(NewQuestion)
