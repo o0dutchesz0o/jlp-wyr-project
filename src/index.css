@@ -10,6 +10,20 @@ a {
   color: #252525;
 }
 
+h2 {
+  width: 75%;
+  text-align: center;
+  border-bottom: solid 1px lightgray;
+  line-height: 0.1em;
+  margin: 20px 60px;
+}
+
+h2 span {
+  background:#fff;
+  color: #697784;
+  padding:0 10px;
+}
+
 footer {
   background: #E8F4FF;
   padding: 5px;
@@ -23,7 +37,7 @@ footer {
 
 .btn {
   text-transform: uppercase;
-  margin: 5px auto;
+  margin: 5px 105px;
   padding: 10px;
   border: 1px solid rgba(0,0,0,.29);
   cursor: pointer;
@@ -108,7 +122,11 @@ li {
   font-size: 27px;
   color: #697784;
   font-weight: bold;
-  margin-left: 15px;
+  display:block;
+  overflow:hidden;
+  width:100%;
+  height:100%;
+  text-align: center;
 }
 
 .question-info {
@@ -120,12 +138,19 @@ li {
   margin: 20px;
 }
 
-.new-question {
-  width: 100%;
+.new-question, .optionOne, .optionTwo {
+  width: 75%;
   max-width: 590px;
-  margin: 0 auto;
+  margin: 10px 65px;
   display: flex;
   flex-direction: column;
+}
+
+.wyr {
+  font-size: 17px;
+  color: black;
+  font-weight: bold;
+  margin-left: 15px;
 }
 
 .textarea {

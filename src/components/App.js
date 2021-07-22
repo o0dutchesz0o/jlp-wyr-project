@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { handleInitialData } from "../actions/shared";
-import HomePage from './HomePage'
 import LoadingBar from "react-redux-loading";
+import HomePage from './HomePage'
+import NewQuestion from './NewQuestion'
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +15,9 @@ class App extends Component {
         <LoadingBar style={{backgroundColor: "#9BE8B6", height: '10px'}}/>
         {this.props.loading === true
         ? null
-        : <HomePage />}
+        // : <HomePage />}
+        : <NewQuestion />}
+
       </div>
     )
   }
