@@ -48,18 +48,6 @@ footer {
   border-radius: 5px;
 }
 
-.btn:hover {
-  border-color: rgba(0,0,0,.5);
-  text-decoration: none;
-  color: #00b5d6;
-}
-
-.btn:focus {
-  outline: 0;
-  font-weight: 700;
-  border-width: 2px;
-}
-
 .center {
   text-align: center;
 }
@@ -138,7 +126,9 @@ li {
   margin: 20px;
 }
 
-.new-question, .optionOne, .optionTwo {
+
+
+.new-question {
   width: 75%;
   max-width: 590px;
   margin: 10px 65px;
@@ -159,4 +149,8 @@ li {
   padding: 10px;
   font-size: 15px;
   height: 100px;
+}
+
+.poll {
+  margin-left: 175px;
 }

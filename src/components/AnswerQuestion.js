@@ -1,15 +1,32 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import {handleAnswerQuestion} from "../actions/questions";
+
 class AnswerQuestion extends Component {
-  toDetails = (e, id) => {
-    e.preventDefault()
-    //todo: redirect to questionDetails
+  state = {
+    disabled: true,
+    selectedOption: ''
   }
 
-  handleSubmit = (e, id) => {
+  handleChange = (e) => {
+    this.setState(() => ({
+      disabled: false,
+      selectedOption: e.target.value
+    }))
+  }
+
+  handleSubmit = (e) => {
     e.preventDefault()
-    //todo: update state to handle hasAnsweredOption
+    const {selectedOption} = this.state
+    const {dispatch, id} = this.props
+
+    dispatch(handleAnswerQuestion(id, selectedOption))
+    this.setState(() => ({
+      disabled: true,
+      selectedOption: ''
+    }))
+    //todo: redirect to questionDetails
   }
 
   render () {
@@ -29,12 +46,32 @@ class AnswerQuestion extends Component {
           <p>{`Asked by ${name}:`}</p>
         </p>
         <div>
-          <span className='question-header'>Would you rather...</span><br/>
-          <input className='poll' type='radio' id='optionOne' value='optionOne'/>
-          <label for="optionOne">{optionOne.text}</label><br/><br/>
-          <input className='poll' type='radio' id='optionTwo' value='optionTwo'/>
-          <label for="optionTwo">{optionTwo.text}</label><br/><br/>
-          <button className='btn poll' onClick={(e) => this.handleSubmit(e,id)}>Submit</button>
+          <form className='answer-question' onSubmit={this.handleSubmit}>
+            <span className='question-header'>Would you rather...</span><br/>
+            <input
+              className='poll optionOne'
+              type='radio'
+              id='optionOne'
+              name='answerOption'
+              value='optionOne'
+              onChange={this.handleChange}
+            />
+            <label htmlFor="optionOne">{optionOne.text}</label><br/><br/>
+            <input
+              className='poll optionTwo'
+              type='radio'
+              id='optionTwo'
+              name='answerOption'
+              value='optionTwo'
+              onChange={this.handleChange}
+            />
+            <label htmlFor="optionTwo">{optionTwo.text}</label><br/><br/>
+            <button
+              className='btn poll'
+              type='submit'
+              disabled={this.state.disabled}>
+              Submit</button>
+          </form>
         </div>
       </div>
 
