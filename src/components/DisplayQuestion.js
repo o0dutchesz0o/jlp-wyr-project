@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-class Question extends Component {
-  toDetails = (e, id) => {
+
+class DisplayQuestion extends Component {
+  toAnswer = (e, id) => {
     e.preventDefault()
-    //todo: redirect to questionDetails
+    //todo: redirect to questionAnswer
   }
 
   handleSubmit = (e) => {
@@ -32,7 +33,7 @@ class Question extends Component {
           <span className='question-header'>Would you rather...</span>
           <p className='question-options'>{`${optionOne.text} OR ${optionTwo.text}`}</p>
 
-          <button className='btn' onClick={(e) => this.toDetails(e,id)}>View Poll</button>
+          <button className='btn' onClick={(e) => this.toAnswer(e,id)}>View Poll</button>
         </div>
       </div>
 
@@ -51,4 +52,4 @@ function mapStateToProps({authedUser, users, questions}, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(DisplayQuestion)
