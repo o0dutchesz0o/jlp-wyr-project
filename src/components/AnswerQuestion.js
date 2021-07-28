@@ -31,10 +31,8 @@ class AnswerQuestion extends Component {
 
   render () {
     const { question } = this.props
-    const { name, avatar, id, optionOne, optionTwo } = question
-    // console.log('question props', this.props)
+    const { name, avatar, optionOne, optionTwo } = question
 
-    console.log('question', question)
     if (question === null) {
       return <p>This WYR does not exist</p>
     }
@@ -74,7 +72,6 @@ class AnswerQuestion extends Component {
           </form>
         </div>
       </div>
-
     )
   }
 }
