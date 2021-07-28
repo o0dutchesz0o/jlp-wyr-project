@@ -173,3 +173,15 @@ li {
 .poll {
   margin-left: 175px;
 }
+
+.authed-user {
+  list-style-type: none;
+  padding: 10px;
+  text-decoration: none;
+  position:absolute;
+  right:0;
+}
+
+.user-name{
+  margin: 0 10px;
+}
