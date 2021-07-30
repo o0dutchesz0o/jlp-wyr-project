@@ -13,3 +13,7 @@ export function formatQuestion(question, users, authedUser) {
     hasAnsweredOptionTwo: optionTwo.votes.includes(authedUser)
   }
 }
+
+export function generateUID () {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}

@@ -1,46 +1,55 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import UserRank from "./UserRank";
+import { generateUID } from "../utils/helpers";
 
 class Leaderboard extends Component {
 
   render() {
-    console.log('LEADERBOARD PROPS', this.props)
-    const { questionsAsked, questionsAnswered, users } = this.props
-
-    debugger
+    const { userQuestions } = this.props
     return(
       <div className='leaderboard'>
-        Leaderboard
+        <ul className='leaderboard-list'>
+          {userQuestions.map((user) => (
+            <li key={user.id}>
+              <UserRank user={user} />
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }
 }
 
 function mapStateToProps({questions, users}) {
-  const userNames = Object.entries(users).map(([userName, _ ]) => userName )
-  const questionsAsked = []
-  Object.entries(users).map(([userName, userValues]) => {
-    questionsAsked.push({[userName]: userValues.questions.length})
-  })
+  const userQuestions = []
 
-  const questionsAnswered = []
-  userNames.forEach(function(user) {
+  Object.entries(users).map(([userName, userValues]) => {
+
     let answered = 0
     Object.entries(questions).map(([qid, qidValue]) => {
-      if (qidValue.optionOne.votes.includes(user)) {
+      if (qidValue.optionOne.votes.includes(userName)) {
         answered += 1
       }
-      if (qidValue.optionTwo.votes.includes(user)) {
+      if (qidValue.optionTwo.votes.includes(userName)) {
         answered += 1
       }
     });
-    questionsAnswered.push({[user]: answered})
+
+    let id = generateUID()
+
+     userQuestions.push({
+         id,
+         userName: userName,
+         questionsAsked: userValues.questions.length,
+         questionsAnswered: answered,
+    })
   })
 
   return {
     users,
-    questionsAsked,
-    questionsAnswered
+    userQuestions
   }
 }
+
 export default connect(mapStateToProps)(Leaderboard)
