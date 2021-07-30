@@ -13,11 +13,6 @@ class HomePage extends Component {
              </li>
            ))}
          </ul>
-        <footer>
-          <a href="https://icons8.com/icon/122589/manager">Manager icon, </a>
-          <a href="https://icons8.com/icon/123623/businesswoman">Businesswoman icon, </a>
-          <a href="https://icons8.com/icon/110479/administrator-male"> & Administrator Male icon by Icons8</a>
-        </footer>
       </div>
     )
   }
