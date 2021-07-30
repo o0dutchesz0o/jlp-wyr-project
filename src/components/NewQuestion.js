@@ -1,12 +1,13 @@
 import React, { Component} from "react";
 import { connect } from 'react-redux'
 import {handleAddQuestion} from "../actions/questions";
-import authedUser from "../reducers/autheduser";
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
     optionOneText: '',
-    optionTwoText: ''
+    optionTwoText: '',
+    toHome: false
   }
 
   handleChange = (e) => {
@@ -20,20 +21,24 @@ class NewQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const { optionOneText, optionTwoText } = this.state
-    const { dispatch } = this.props
+    const { dispatch, id } = this.props
 
     dispatch(handleAddQuestion(optionOneText, optionTwoText))
 
     this.setState(() => ({
       optionOneText: '',
-      optionTwoText: ''
+      optionTwoText: '',
+      toHome: !id
     }))
   }
-
+6
   render() {
-    const {optionOneText, optionTwoText } = this.state
+    const {optionOneText, optionTwoText, toHome } = this.state
 
-    // todo redirect to results view when submitted
+    if (toHome === true) {
+      return <Redirect to='/'/>
+    }
+
     return (
       <div className='question'>
         <span className='question-header'>Create New Question</span>
