@@ -6,8 +6,6 @@ import { Link, withRouter } from 'react-router-dom'
 class DisplayQuestion extends Component {
   toAnswer = (e, id) => {
     e.preventDefault()
-    const { dispatch } = this.props
-    dispatch(setCurrentQuestion(id))
     this.props.history.push(`answer/${id}`)
   }
 
