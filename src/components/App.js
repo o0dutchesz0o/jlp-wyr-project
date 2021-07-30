@@ -7,8 +7,8 @@ import Nav from './Nav'
 import HomePage from './HomePage'
 import NewQuestion from './NewQuestion'
 import QuestionDetails from "./QuestionDetails";
-import DisplayQuestion from "./DisplayQuestion";
 import AnswerQuestion from "./AnswerQuestion";
+import Leaderboard from "./Leaderboard";
 
 class App extends Component {
   componentDidMount() {
@@ -26,10 +26,9 @@ class App extends Component {
                   <Nav />
                   <Route path='/' exact component={HomePage}/>
                   <Route path='/add' exact component={NewQuestion}/>
-                  {/*<Route path='/leaderboard' exact component={LeaderBoard}/>*/}
-                  <Route path='/question/:id' exact component={DisplayQuestion}/>
-                  <Route path='/question/:id/answer' exact component={AnswerQuestion}/>
-                  <Route path='/question/:id/details' exact component={QuestionDetails}/>
+                  <Route path='/leaderboard' exact component={Leaderboard}/>
+                  <Route path='/question/:id' exact component={QuestionDetails}/>
+                  <Route path='/answer/:id/' exact component={AnswerQuestion}/>
                   <footer>
                     <a href="https://icons8.com/icon/122589/manager">Manager Icon</a>&nbsp;&nbsp;
                     <a href="https://icons8.com/icon/123623/businesswoman">Businesswoman Icon</a>&nbsp;&nbsp;

@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import { Link, withRouter } from 'react-router-dom'
 
 class DisplayQuestion extends Component {
   toAnswer = (e, id) => {
     e.preventDefault()
-    //todo: redirect to questionAnswer
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-    //todo: update state to handle hasAnsweredOption
+    const { dispatch } = this.props
+    dispatch(setCurrentQuestion(id))
+    this.props.history.push(`answer/${id}`)
   }
 
   render () {
@@ -30,8 +28,9 @@ class DisplayQuestion extends Component {
         <div className='question-info'>
           <span className='question-header'>Would you rather...</span>
           <p className='question-options'>{`${optionOne.text} OR ${optionTwo.text}`}</p>
-
-          <button className='btn' onClick={(e) => this.toAnswer(e,id)}>View Poll</button>
+          <Link to={`/answer/${id}`}>
+            <button className='btn' onClick={(e) => this.toAnswer(e,id)}>View Poll</button>
+          </Link>
         </div>
       </div>
 
@@ -50,4 +49,4 @@ function mapStateToProps({authedUser, users, questions}, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(DisplayQuestion)
+export default withRouter(connect(mapStateToProps)(DisplayQuestion))

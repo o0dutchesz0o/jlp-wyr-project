@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
-import {handleAnswerQuestion} from "../actions/questions";
+import { handleAnswerQuestion } from "../actions/questions";
 
 class AnswerQuestion extends Component {
   state = {
     disabled: true,
     selectedOption: ''
+
   }
 
   handleChange = (e) => {
@@ -30,8 +31,10 @@ class AnswerQuestion extends Component {
   }
 
   render () {
-    const { question } = this.props
-    const { name, avatar, optionOne, optionTwo } = question
+    const { questions, users, authedUser } = this.props
+    const question  = questions[this.props.match.params.id]
+    const formattedQuestion = formatQuestion(question, users, authedUser)
+    const { name, avatar, optionOne, optionTwo } = formattedQuestion
 
     if (question === null) {
       return <p>This WYR does not exist</p>
@@ -78,12 +81,11 @@ class AnswerQuestion extends Component {
 
 //first param - what I need to get from the store
 //2nd param - what prop I'm passing to it
-function mapStateToProps({authedUser, users, questions}, { id }) {
-  const question = questions[id]
-
+function mapStateToProps({authedUser, questions, users}) {
   return {
     authedUser,
-    question: question ? formatQuestion(question, users, authedUser) : null
+    questions,
+    users
   }
 }
 
