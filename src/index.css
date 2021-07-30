@@ -26,7 +26,11 @@ h2 span {
 
 footer {
   background: #E8F4FF;
-  padding: 5px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:25px;
 }
 
 .container {
@@ -44,8 +48,20 @@ footer {
   font-size: 16px;
   width: 250px;
   position: relative;
-  background: #9BE8B6;
+  background: #9BE8B6 !important;
   border-radius: 5px;
+  color: #364451 !important;
+}
+
+.btn:hover {
+  border-color: rgba(0,0,0,.5);
+  text-decoration: none;
+}
+
+.btn:focus {
+  outline: 0;
+  font-weight: 700;
+  border-width: 2px;
 }
 
 .center {
@@ -54,6 +70,27 @@ footer {
 
 .active {
   font-weight: bold;
+  background: #9BE8B6;
+  border-radius: 5px;
+}
+
+.nav-link {
+  color: #505E6B !important;
+}
+
+.log-out {
+  text-decoration: none;
+  color: #505E6B !important;
+  font-weight: bold;
+}
+
+.nav {
+  border-bottom: 5px solid #9BE8B6;
+  text-decoration: none;
+  list-style-type: none;
+  padding: 10px;
+  padding-bottom: 0;
+  right:0;
 }
 
 .nav ul {
@@ -73,7 +110,7 @@ ul {
 
 li {
   list-style-type: none;
-  padding: 10px;
+  padding: 0 10px;
   text-decoration: none;
 }
 
@@ -87,8 +124,8 @@ li {
   width: 100%;
   max-width: 590px;
   padding: 10px;
-  /*display: flex;*/
   margin: 0 auto;
+  margin-bottom: 5px;
   border: 1px solid #dad7d7;
   border-radius: 3px;
   cursor: pointer;
@@ -104,6 +141,7 @@ li {
 .question-author > p {
   font-weight: bold;
   margin: 25px 0;
+  color: #364451;
 }
 
 .question-header {
@@ -124,6 +162,8 @@ li {
 
 .question-options {
   margin: 20px;
+  color: #364451;
+
 }
 
 .question-details {
@@ -175,13 +215,11 @@ li {
 }
 
 .authed-user {
-  list-style-type: none;
-  padding: 10px;
-  text-decoration: none;
   position:absolute;
   right:0;
 }
 
 .user-name{
   margin: 0 10px;
+  color: #364451;
 }

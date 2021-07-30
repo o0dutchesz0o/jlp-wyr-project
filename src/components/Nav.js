@@ -10,20 +10,20 @@ class Nav extends Component {
       <nav className='nav'>
         <ul>
           <li>
-            <NavLink to='/' exact activeClassName='active'>Home Page</NavLink>
+            <NavLink to='/' exact activeClassName='active' className='nav-link'>Home Page</NavLink>
           </li>
           <li>
-            <NavLink to='/add' exact activeClassName='active'>Add New Question</NavLink>
+            <NavLink to='/add' exact activeClassName='active' className='nav-link'>Add New Question</NavLink>
           </li>
           <li>
-            <NavLink to='/leaderboard' exact activeClassName='active'>Leader Board</NavLink>
+            <NavLink to='/leaderboard' exact activeClassName='active' className='nav-link'>Leader Board</NavLink>
+          </li>
+          <li className='authed-user'>
+              <img src={avatarURL} alt={`Avatar of ${name}`}/>
+              <span className='user-name'>{name}</span>
+              <NavLink to='/logout' exact activeClassName='active' className='log-out'>Log Out</NavLink>
           </li>
         </ul>
-        <div className='authed-user'>
-          <img className='avatar' src={avatarURL} alt={`Avatar of ${name}`}/>
-          <span className='user-name'>{name}</span>
-          <NavLink to='/logout' exact activeClassName='active'>Log Out</NavLink>
-        </div>
       </nav>
     )
   }
@@ -31,7 +31,6 @@ class Nav extends Component {
 
 function mapStateToProps({authedUser, users}) {
   const user = users[authedUser]
-  debugger
   return {
     authedUser,
     user
