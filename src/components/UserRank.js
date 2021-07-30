@@ -7,7 +7,7 @@ class UserRank extends Component {
     const { userName, questionsAsked, questionsAnswered, totalScore } = user
     const userInfo = users[userName]
     const { avatarURL, name } = userInfo
-    debugger
+
     return (
     <div className='user-rank'>
       <p className='author'>
