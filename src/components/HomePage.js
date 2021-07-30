@@ -4,10 +4,8 @@ import DisplayQuestion from "./DisplayQuestion";
 
 class HomePage extends Component {
   render () {
-    console.log("HomePage props", this.props)
     return (
       <div>
-         <h3 className='center'>Home</h3>
          <ul className='dashboard-list'>
            {this.props.questionIds.map((id) => (
              <li key={id}>

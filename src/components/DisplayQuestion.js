@@ -16,9 +16,7 @@ class DisplayQuestion extends Component {
   render () {
     const { question, authedUser } = this.props
     const { author, name, avatar, hasAnsweredOptionOne, hasAnsweredOptionTwo, id, optionOne, optionTwo, timestamp} = question
-    // console.log('question props', this.props)
 
-    console.log('question', question)
     if (question === null) {
       return <p>This WYR does not exist</p>
     }
