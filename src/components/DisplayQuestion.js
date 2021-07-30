@@ -19,7 +19,7 @@ class DisplayQuestion extends Component {
 
     return (
       <div className='question'>
-        <p className='question-author'>
+        <p className='author'>
           <img className='avatar' src={avatar} alt={`Avatar of ${name}`}/>
           <p>{`Asked by ${name}:`}</p>
         </p>

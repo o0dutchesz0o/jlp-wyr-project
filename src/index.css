@@ -125,6 +125,10 @@ li {
   cursor: pointer;
 }
 
+.leaderboard-list {
+  padding-left: 0;
+}
+
 .avatar {
   height: 50px;
   border-radius: 25px;
@@ -142,14 +146,14 @@ li {
   cursor: pointer;
 }
 
-.question-author {
+.author {
  display: flex;
   background: #9ba7e8;
   border: 1px solid;
   border-radius: 5px;
 }
 
-.question-author > p {
+.author > p {
   font-weight: bold;
   margin: 25px 0;
   color: #364451;
@@ -181,7 +185,6 @@ li {
   width: 100%;
   max-width: 590px;
   padding: 10px;
-  /*display: flex;*/
   margin: 10px auto;
   border: 1px solid #dad7d7;
   border-radius: 3px;
@@ -234,3 +237,33 @@ li {
   margin: 0 10px;
   color: #364451;
 }
+
+.user-rank{
+  border: 1px solid #dad7d7;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.user-questions {
+  float: right;
+}
+
+.user-score {
+  text-align: center;
+  border: 1px solid #dad7d7;
+  border-radius: 5px;
+  margin: 10px 50px;
+
+}
+
+.user-info {
+  margin-left: 25px;
+  padding-bottom: 10px;
+}
+
+.score-header {
+  font-size: 20px;
+  font-weight: bold;
+  color: #364451;
+}
+

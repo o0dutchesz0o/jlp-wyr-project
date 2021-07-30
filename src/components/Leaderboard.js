@@ -10,7 +10,8 @@ class Leaderboard extends Component {
     return(
       <div className='leaderboard'>
         <ul className='leaderboard-list'>
-          {userQuestions.map((user) => (
+          {userQuestions.sort((a,b) => (a.totalScore < b.totalScore) ? 1 : -1)
+            .map((user) => (
             <li key={user.id}>
               <UserRank user={user} />
             </li>
@@ -35,14 +36,15 @@ function mapStateToProps({questions, users}) {
         answered += 1
       }
     });
+    let totalScore = userValues.questions.length + answered
 
     let id = generateUID()
-
      userQuestions.push({
          id,
          userName: userName,
          questionsAsked: userValues.questions.length,
          questionsAnswered: answered,
+          totalScore
     })
   })
 
