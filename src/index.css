@@ -120,8 +120,6 @@ li {
   padding: 10px;
   margin: 10px auto;
   margin-bottom: 5px;
-  border: 1px solid #dad7d7;
-  border-radius: 3px;
   cursor: pointer;
 }
 
@@ -151,10 +149,11 @@ li {
 }
 
 .author {
- display: flex;
+  display: flex;
   background: #9ba7e8;
   border: 1px solid;
   border-radius: 5px;
+  margin: 10px 10px;
 }
 
 .author > p {
@@ -162,6 +161,30 @@ li {
   margin: 25px 0;
   color: #364451;
 }
+
+.rank {
+  display: flex;
+  float: right;
+  text-align: center;
+  margin: 10px 0px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #364451;
+}
+
+#rank-1 {
+  color: gold;
+}
+
+#rank-2 {
+  color: silver;
+}
+
+#rank-3 {
+  color: #cd7f32;
+}
+
+
 
 .question-header {
   font-size: 27px;
@@ -256,8 +279,7 @@ li {
   text-align: center;
   border: 1px solid #dad7d7;
   border-radius: 5px;
-  margin: 10px 50px;
-
+  margin: 10px 0;
 }
 
 .user-info {

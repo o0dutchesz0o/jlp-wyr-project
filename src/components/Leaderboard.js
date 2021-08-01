@@ -7,13 +7,14 @@ class Leaderboard extends Component {
 
   render() {
     const { userQuestions } = this.props
+    let rank = 0
     return(
       <div className='leaderboard'>
         <ul className='leaderboard-list'>
           {userQuestions.sort((a,b) => (a.totalScore < b.totalScore) ? 1 : -1)
             .map((user) => (
             <li key={user.id}>
-              <UserRank user={user} />
+              <UserRank user={user} rank={rank = rank + 1} />
             </li>
           ))}
         </ul>
