@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux'
 import DisplayQuestion from "./DisplayQuestion";
+import {formatQuestion} from "../utils/helpers";
 
 class HomePage extends Component {
   render () {
+    const { formattedQuestions } = this.props
+    debugger
     return (
       <div>
          <ul className='dashboard-list'>
-           {this.props.questionIds.map((id) => (
-             <li key={id}>
-               <DisplayQuestion id={id}/>
+           {formattedQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
+             .map((question) => (
+             <li key={question.id}>
+               <DisplayQuestion id={question.id}/>
              </li>
            ))}
          </ul>
@@ -18,10 +22,14 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps({ questions}) {
+function mapStateToProps({authedUser, users, questions}) {
+  const formattedQuestions = Object.entries(questions).map(([question,questionValues]) => {
+      return formatQuestion(questionValues, users, authedUser)
+  })
+
   return {
-    questionIds: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+    authedUser,
+    formattedQuestions,
   }
 }
 
