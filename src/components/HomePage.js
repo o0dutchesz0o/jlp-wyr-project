@@ -6,17 +6,31 @@ import {formatQuestion} from "../utils/helpers";
 class HomePage extends Component {
   render () {
     const { formattedQuestions } = this.props
-    debugger
+    const answeredQuestions = formattedQuestions.filter((question) => (
+      question.hasAnsweredOptionOne || question.hasAnsweredOptionTwo
+    ))
+
+    const unansweredQuestions = formattedQuestions.filter(question => !answeredQuestions.includes(question));
     return (
       <div>
-         <ul className='dashboard-list'>
-           {formattedQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
+        <div>Answered</div>
+        <ul className='dashboard-list answeredQuestions'>
+           {answeredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
              .map((question) => (
              <li key={question.id}>
-               <DisplayQuestion id={question.id}/>
+               <DisplayQuestion id={question.id} answered='true'/>
              </li>
            ))}
          </ul>
+        <div>Unanswered Questions</div>
+        <ul className='dashboard-list unansweredQuestions'>
+          {unansweredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
+            .map((question) => (
+              <li key={question.id}>
+                <DisplayQuestion id={question.id} answered='false'/>
+              </li>
+            ))}
+        </ul>
       </div>
     )
   }

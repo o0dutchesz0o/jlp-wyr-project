@@ -6,8 +6,10 @@ import Badge from 'react-bootstrap/Badge'
 
 class QuestionDetails extends Component {
   render () {
-    const { question } = this.props
-    const { name, avatar, optionOne, optionTwo, hasAnsweredOptionOne, hasAnsweredOptionTwo} = question
+    const { questions, users, authedUser } = this.props
+    const question  = questions[this.props.match.params.id]
+    const formattedQuestion = formatQuestion(question, users, authedUser)
+    const { name, avatar, optionOne, optionTwo, hasAnsweredOptionOne, hasAnsweredOptionTwo} = formattedQuestion
     const optionOneVotes = optionOne.votes.length
     const optionTwoVotes = optionTwo.votes.length
 
@@ -44,11 +46,10 @@ class QuestionDetails extends Component {
 }
 
 function mapStateToProps({authedUser, users, questions}, { id }) {
-  const question = questions[id]
-
   return {
     authedUser,
-    question: question ? formatQuestion(question, users, authedUser) : null
+    questions,
+    users
   }
 }
 

@@ -9,9 +9,14 @@ class DisplayQuestion extends Component {
     this.props.history.push(`answer/${id}`)
   }
 
+  toDetails = (e, id) => {
+    e.preventDefault()
+    this.props.history.push(`question/${id}`)
+  }
+
   render () {
-    const { question, authedUser } = this.props
-    const { author, name, avatar, hasAnsweredOptionOne, hasAnsweredOptionTwo, id, optionOne, optionTwo, timestamp} = question
+    const { question } = this.props
+    const { name, avatar, id, optionOne, optionTwo} = question
 
     if (question === null) {
       return <p>This WYR does not exist</p>
@@ -26,9 +31,15 @@ class DisplayQuestion extends Component {
         <div className='question-info'>
           <span className='question-header'>Would you rather...</span>
           <p className='question-options'>{`${optionOne.text} OR ${optionTwo.text}`}</p>
-          <Link to={`/answer/${id}`}>
-            <button className='btn' onClick={(e) => this.toAnswer(e,id)}>View Poll</button>
-          </Link>
+          { this.props.answered === 'true' ?
+            <Link to={`/question/${id}`}>
+              <button className='btn' onClick={(e) => this.toDetails(e,id)}>View Details</button>
+            </Link>
+            :
+            <Link to={`/answer/${id}`}>
+              <button className='btn' onClick={(e) => this.toAnswer(e,id)}>View Poll</button>
+            </Link>
+          }
         </div>
       </div>
 
