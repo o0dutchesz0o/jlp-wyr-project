@@ -43,7 +43,7 @@ class Login extends Component {
             ))}
             </select>
             <Link to='/'>
-              <button className='btn' onClick={(e) => this.handleSubmit(e)}>Sign in</button>
+              <button className='btn login-btn' onClick={(e) => this.handleSubmit(e)}>Sign in</button>
             </Link>
           </div>
       </div>

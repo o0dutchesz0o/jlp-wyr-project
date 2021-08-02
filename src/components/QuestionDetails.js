@@ -30,13 +30,13 @@ class QuestionDetails extends Component {
           <div className='question-details'>
             {(hasAnsweredOptionOne) && <Badge pill bg="success">Your vote</Badge>}
             <span className='results-option'>{optionOne.text}</span>
-            <ProgressBar variant="info" now={optionOnePercentage} label={`${optionOnePercentage}%`} />
+            <ProgressBar variant="info" now={optionOnePercentage} label={`${optionOnePercentage.toFixed(2)}%`} />
             {`${optionOneVotes} of ${totalVotes} votes`}
           </div>
           <div className='question-details'>
             {(hasAnsweredOptionTwo) && <Badge pill bg="success">Your vote</Badge>}
             <span className='results-option'>{optionTwo.text}</span>
-            <ProgressBar variant="info" now={optionTwoPercentage} label={`${optionTwoPercentage}%`} />
+            <ProgressBar variant="info" now={optionTwoPercentage} label={`${optionTwoPercentage.toFixed(2)}%`} />
             {`${optionTwoVotes} of ${totalVotes} votes`}
           </div>
         </div>
