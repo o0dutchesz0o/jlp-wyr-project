@@ -31,12 +31,12 @@ class NewQuestion extends Component {
       toHome: !id
     }))
   }
-6
+
   render() {
     const {optionOneText, optionTwoText, toHome } = this.state
 
     if (toHome === true) {
-      return <Redirect to='/home'/>
+      return <Redirect to='/'/>
     }
 
     return (

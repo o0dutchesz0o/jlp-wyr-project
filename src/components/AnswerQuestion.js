@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import { handleAnswerQuestion } from "../actions/questions";
+import {Redirect} from "react-router-dom";
 
 class AnswerQuestion extends Component {
   state = {
     disabled: true,
-    selectedOption: ''
+    selectedOption: '',
+    toDetails: false
   }
 
   handleChange = (e) => {
@@ -19,24 +21,31 @@ class AnswerQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const {selectedOption} = this.state
-    const {dispatch, id} = this.props
-
+    const {dispatch} = this.props
+    const { id } = this.props.match.params
     dispatch(handleAnswerQuestion(id, selectedOption))
+
     this.setState(() => ({
       disabled: true,
-      selectedOption: ''
+      selectedOption: '',
+      toDetails: true
     }))
     //todo: redirect to questionDetails
   }
 
   render () {
     const { questions, users, authedUser } = this.props
+    const { toDetails } = this.state
     const question  = questions[this.props.match.params.id]
     const formattedQuestion = formatQuestion(question, users, authedUser)
-    const { name, avatar, optionOne, optionTwo } = formattedQuestion
+    const { name, avatar, optionOne, optionTwo, id } = formattedQuestion
 
     if (question === null) {
       return <p>This WYR does not exist</p>
+    }
+
+    if (toDetails === true) {
+      return <Redirect to={`/question/${id}`}/>
     }
 
     return (
