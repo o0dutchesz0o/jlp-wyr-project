@@ -17,7 +17,7 @@ class UserRank extends Component {
           <p>{name}</p>
         </p>
         <span className='rank row col-md-6' id={`rank-${rank}`}>
-          <span className='rank-header col-md-3 offset-4'>Rank</span>
+          <span className='header rank-header col-md-3 offset-4'>Rank</span>
           <div className='row'>
             <div className='col-md-2 offset-5'>{`#${rank}`}</div>
           </div>
@@ -29,8 +29,8 @@ class UserRank extends Component {
           <span>Questions Answered</span><span className='user-questions'>{questionsAnswered}</span><br/>
         </div>
         <div className='row col-sm-5 user-score offset-1'>
-          <span className='score-header col-med-3'>Total Score</span>
-          <span className='score-header col-med-3'>{totalScore}</span>
+          <span className='header score-header col-med-3'>Total Score</span>
+          <span className='header score-header col-med-3'>{totalScore}</span>
         </div>
       </div>
     </div>

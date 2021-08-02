@@ -25,8 +25,8 @@ class QuestionDetails extends Component {
           <p>{`Asked by ${name}:`}</p>
         </p>
         <div>
-          <span className='results-header'>Results:</span><br/>
-          <span className='question-header'>Would you rather...</span><br/>
+          <span className='header results-header'>Results:</span><br/>
+          <span className='header question-header'>Would you rather...</span><br/>
           <div className='question-details'>
             {(hasAnsweredOptionOne) && <Badge pill bg="success">Your vote</Badge>}
             <span className='results-option'>{optionOne.text}</span>
