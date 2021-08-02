@@ -3,9 +3,7 @@ import { receiveUsers } from "./users";
 import { receiveQuestions } from "./questions";
 import { setAuthedUser } from "./authedUser";
 import { showLoading, hideLoading } from "react-redux-loading";
-
-//TODO - REMOVE temporary static authed user for initial setup
-const AUTHED_ID = 'tylermcginnis'
+import { setLoggedIn } from "./login";
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -14,7 +12,8 @@ export function handleInitialData () {
       .then(({users, questions}) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
-        dispatch(setAuthedUser(AUTHED_ID))
+        dispatch(setLoggedIn(false))
+        dispatch(setAuthedUser(''))
         dispatch(hideLoading())
       })
   }

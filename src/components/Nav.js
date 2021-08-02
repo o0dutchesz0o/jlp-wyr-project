@@ -10,7 +10,7 @@ class Nav extends Component {
       <nav className='nav'>
         <ul>
           <li>
-            <NavLink to='/' exact activeClassName='active' className='nav-link'>Home Page</NavLink>
+            <NavLink to='/home' exact activeClassName='active' className='nav-link'>Home Page</NavLink>
           </li>
           <li>
             <NavLink to='/add' exact activeClassName='active' className='nav-link'>Add New Question</NavLink>
