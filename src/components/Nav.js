@@ -1,8 +1,18 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
+import {setAuthedUser} from "../actions/authedUser";
+import {setLoggedIn} from "../actions/login";
 
 class Nav extends Component {
+  handleLogOut = (e) => {
+    e.preventDefault()
+    const { dispatch } = this.props
+
+    dispatch(setAuthedUser(''))
+    dispatch(setLoggedIn(false))
+  }
+
   render () {
     const { user } = this.props
     const { avatarURL, name} = user
@@ -21,7 +31,7 @@ class Nav extends Component {
           <li className='authed-user'>
               <img src={avatarURL} alt={`Avatar of ${name}`}/>
               <span className='user-name'>{name}</span>
-              <NavLink to='/logout' exact activeClassName='active' className='log-out'>Log Out</NavLink>
+            <Link to='/' className='log-out' onClick={(e) => this.handleLogOut(e)}>Log Out</Link>
           </li>
         </ul>
       </nav>

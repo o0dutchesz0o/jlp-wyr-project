@@ -42,7 +42,7 @@ class Login extends Component {
               <option value={userName}>{userValues.name}</option>
             ))}
             </select>
-            <Link to={`/`}>
+            <Link to='/'>
               <button className='btn' onClick={(e) => this.handleSubmit(e)}>Sign in</button>
             </Link>
           </div>
