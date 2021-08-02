@@ -1,27 +1,26 @@
-# Getting Started with Create React App
+# The Would You Rather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Overview
 
-## Available Scripts
+The Would You Rather App lets uses decide between two options one of which they "would rather" choose over the other.
+Users are able to create new questions, see which questions they have already answered and which are still left unanswered.\
+Users can also compete with each other. The more questions asked and answered, the higher the user's rank. Users can
+view their standing on the Leaderboard. 
+
+### To Get Started
 
 In the project directory, you can run:
+### `npm install`
+* to install all project dependencies 
 
-### `yarn start`
+### `npm start`
+* start the development server
 
-Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `npm build`
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
+* Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
 The build is minified and the filenames include the hashes.\
@@ -29,7 +28,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `npm eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
@@ -39,32 +38,98 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Data
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+There are two types of objects stored in our database:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Users
+* Questions
 
-### Code Splitting
+### Users
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Users include:
 
-### Analyzing the Bundle Size
+| Attribute    | Type             | Description           |
+|-----------------|------------------|-------------------         |
+| id                 | String           | The user’s unique identifier |
+| name          | String           | The user’s first name  and last name     |
+| avatarURL  | String           | The path to the image file |
+| questions | Array | A list of ids of the polling questions this user created|
+| answers      | Object         |  The object's keys are the ids of each question this user answered. The value of each key is the answer the user selected. It can be either `'optionOne'` or `'optionTwo'` since each question has two options.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Questions
 
-### Making a Progressive Web App
+Questions include:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id                  | String | The question’s unique identifier |
+| author        | String | The author’s unique identifier |
+| timestamp | String | The time when the question was created|
+| optionOne | Object | The first voting option|
+| optionTwo | Object | The second voting option|
 
-### Advanced Configuration
+### Voting Options
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Voting options are attached to questions. They include:
 
-### Deployment
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| votes             | Array | A list that contains the id of each user who voted for that option|
+| text                | String | The text of the option |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Your code will talk to the database via 4 methods:
 
-### `yarn build` fails to minify
+* `_getUsers()`
+* `_getQuestions()`
+* `_saveQuestion(question)`
+* `_saveQuestionAnswer(object)`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1) `_getUsers()` Method
+
+*Description*: Get all of the existing users from the database.  
+*Return Value*: Object where the key is the user’s id and the value is the user object.
+
+2) `_getQuestions()` Method
+
+*Description*: Get all of the existing questions from the database.  
+*Return Value*: Object where the key is the question’s id and the value is the question object.
+
+3) `_saveQuestion(question)` Method
+
+*Description*: Save the polling question in the database.  
+*Parameters*:  Object that includes the following properties: `author`, `optionOneText`, and `optionTwoText`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| author | String | The id of the user who posted the question|
+| optionOneText| String | The text of the first option |
+| optionTwoText | String | The text of the second option |
+
+*Return Value*:  An object that has the following properties: `id`, `author`, `optionOne`, `optionTwo`, `timestamp`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| id | String | The id of the question that was posted|
+| author | String | The id of the user who posted the question|
+| optionOne | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
+| optionTwo | Object | The object has a text property and a votes property, which stores an array of the ids of the users who voted for that option|
+|timestamp|String | The time when the question was created|
+
+4) `_saveQuestionAnswer(object)` Method
+
+*Description*: Save the answer to a particular polling question in the database.
+*Parameters*: Object that contains the following properties: `authedUser`, `qid`, and `answer`. More details about these properties:
+
+| Attribute | Type | Description |
+|-----------------|------------------|-------------------|
+| authedUser | String | The id of the user who answered the question|
+| qid | String | The id of the question that was answered|
+| answer | String | The option the user selected. The value should be either `"optionOne"` or `"optionTwo"`|
+
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Contributing
+
+This repository is the starter code for *all* Udacity students. Therefore, we most likely will not accept pull requests. For details, check out [CONTRIBUTING.md](https://github.com/udacity/reactnd-project-would-you-rather-starter/blob/master/CONTRIBUTING.md).
