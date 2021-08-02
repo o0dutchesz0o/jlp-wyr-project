@@ -26,10 +26,10 @@ class Leaderboard extends Component {
 function mapStateToProps({questions, users}) {
   const userQuestions = []
 
-  Object.entries(users).map(([userName, userValues]) => {
+  Object.entries(users).forEach(([userName, userValues]) => {
 
     let answered = 0
-    Object.entries(questions).map(([qid, qidValue]) => {
+    Object.entries(questions).forEach(([qid, qidValue]) => {
       if (qidValue.optionOne.votes.includes(userName)) {
         answered += 1
       }
