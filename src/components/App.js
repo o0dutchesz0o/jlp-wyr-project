@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import LoadingBar from "react-redux-loading";
 import Login from "./Login";
@@ -26,12 +26,17 @@ class App extends Component {
             { isLoggedIn === false
               ? <div>
                   <Route path='/' exact component={Login}/>
-                </div>
+                  <Redirect from='/leaderboard' to='/' />
+                  <Redirect from='/add' to='/' />
+                  <Redirect from='/leaderboard' to='/' />
+                  <Redirect from='/question/:id' to='/' />
+                  <Redirect from='/answer/:id/' to='/' />
+              </div>
               : loading === true
               ? null
               : <div>
                   <Nav />
-                  <Route path='/home' exact component={HomePage}/>
+                  <Route path='/' exact component={HomePage}/>
                   <Route path='/add' exact component={NewQuestion}/>
                   <Route path='/leaderboard' exact component={Leaderboard}/>
                   <Route path='/question/:id' exact component={QuestionDetails}/>
@@ -51,7 +56,6 @@ class App extends Component {
 }
 
 function mapStateToProps({authedUser, isLoggedIn}) {
-  debugger
   return {
     loading: authedUser === null,
     isLoggedIn
