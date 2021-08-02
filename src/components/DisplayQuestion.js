@@ -29,7 +29,7 @@ class DisplayQuestion extends Component {
           <p>{`Asked by ${name}:`}</p>
         </p>
         <div className='question-info'>
-          <span className='question-header'>Would you rather...</span>
+          <span className='header question-header'>Would you rather...</span>
           <p className='question-options'>{`${optionOne.text} OR ${optionTwo.text}`}</p>
           { this.props.answered === 'true' ?
             <Link to={`/question/${id}`}>

@@ -13,7 +13,7 @@ class HomePage extends Component {
     const unansweredQuestions = formattedQuestions.filter(question => !answeredQuestions.includes(question));
     return (
       <div>
-        <div>Answered</div>
+        <div className='header question-header'>Answered</div>
         <ul className='dashboard-list answeredQuestions'>
            {answeredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
              .map((question) => (
@@ -22,7 +22,7 @@ class HomePage extends Component {
              </li>
            ))}
          </ul>
-        <div>Unanswered Questions</div>
+        <div className='header question-header'>Unanswered Questions</div>
         <ul className='dashboard-list unansweredQuestions'>
           {unansweredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
             .map((question) => (

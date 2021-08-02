@@ -41,7 +41,7 @@ class NewQuestion extends Component {
 
     return (
       <div className='question'>
-        <span className='question-header'>Create New Question</span>
+        <span className='header question-header'>Create New Question</span>
         <form className='new-question' onSubmit={this.handleSubmit}>
             Complete the question:
             <p className='wyr'>Would you rather...</p>

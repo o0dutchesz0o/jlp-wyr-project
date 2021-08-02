@@ -7,7 +7,6 @@ class AnswerQuestion extends Component {
   state = {
     disabled: true,
     selectedOption: ''
-
   }
 
   handleChange = (e) => {
@@ -48,7 +47,7 @@ class AnswerQuestion extends Component {
         </p>
         <div>
           <form className='answer-question' onSubmit={this.handleSubmit}>
-            <span className='question-header'>Would you rather...</span><br/>
+            <span className='header question-header'>Would you rather...</span><br/>
             <input
               className='poll optionOne'
               type='radio'
