@@ -30,7 +30,6 @@ class AnswerQuestion extends Component {
       selectedOption: '',
       toDetails: true
     }))
-    //todo: redirect to questionDetails
   }
 
   render () {

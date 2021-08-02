@@ -97,7 +97,7 @@ footer {
 
 .nav {
   border-bottom: 5px solid #9BE8B6;
-  text-decoration: none;
+  text-decoration: none !important;
   list-style-type: none;
   padding: 10px;
   padding-bottom: 0;
@@ -114,6 +114,42 @@ footer {
 .nav li:first-child {
   padding-left: 0;
 }
+
+.questions-nav {
+  margin: auto 25%;
+}
+.questions-nav ul li {
+  margin: auto 35%;
+  min-width: 200px;
+}
+
+.nav-question {
+  min-width: 200px;
+  color: #505E6B;
+  text-decoration: none;
+  list-style-type: none;
+  padding: 10px;
+  padding-bottom: 0;
+  left: 25%;
+  text-align: center;
+  width: 100%;
+}
+
+.nav-question:hover {
+  color: #1D2B38;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-question:focus {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #9BE8B6;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
 
 ul {
   padding-left: 0;
@@ -174,6 +210,7 @@ li {
   width:100%;
   height:100%;
   text-align: center;
+  padding: 10px 0;
 }
 
 .results-header {

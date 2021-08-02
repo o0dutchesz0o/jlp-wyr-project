@@ -2,35 +2,79 @@ import React, { Component } from "react";
 import { connect } from 'react-redux'
 import DisplayQuestion from "./DisplayQuestion";
 import {formatQuestion} from "../utils/helpers";
+import { Link } from 'react-router-dom'
 
 class HomePage extends Component {
+  state = {
+    displayComponent: 'unanswered'
+  }
+
+  handleDisplayQuestions = (e) => {
+    e.preventDefault()
+    this.setState(() => ({
+      displayComponent: e.target.id
+    }))
+  }
+
   render () {
     const { formattedQuestions } = this.props
+    const { displayComponent } = this.state
+
     const answeredQuestions = formattedQuestions.filter((question) => (
       question.hasAnsweredOptionOne || question.hasAnsweredOptionTwo
     ))
 
     const unansweredQuestions = formattedQuestions.filter(question => !answeredQuestions.includes(question));
+    console.log('home page state', this.state)
+
     return (
       <div>
-        <div className='header question-header'>Answered</div>
-        <ul className='dashboard-list answeredQuestions'>
-           {answeredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
-             .map((question) => (
-             <li key={question.id}>
-               <DisplayQuestion id={question.id} answered='true'/>
-             </li>
-           ))}
-         </ul>
-        <div className='header question-header'>Unanswered Questions</div>
-        <ul className='dashboard-list unansweredQuestions'>
-          {unansweredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
-            .map((question) => (
+        <nav className='nav questions-nav'>
+          <ul>
+            <li>
+              <Link
+                    className='nav-question'
+                    id='unanswered'
+                    onClick={(e) => this.handleDisplayQuestions(e)}>
+                    Unanswered Questions
+              </Link>
+            </li>
+            <li>
+              <Link
+                    className='nav-question'
+                    id='answered'
+                    onClick={(e) => this.handleDisplayQuestions(e)}>
+                    Answered Questions
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        {(displayComponent === 'unanswered') &&
+          <div>
+            <div className='header question-header'>Unanswered Questions</div>
+              <ul className='dashboard-list unansweredQuestions'>
+            {unansweredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
+              .map((question) => (
               <li key={question.id}>
-                <DisplayQuestion id={question.id} answered='false'/>
+              <DisplayQuestion id={question.id} answered='false'/>
               </li>
-            ))}
-        </ul>
+              ))}
+              </ul>
+          </div>
+        }
+        {(displayComponent === 'answered') &&
+        <div>
+          <div className='header question-header'>Answered</div>
+          <ul className='dashboard-list answeredQuestions'>
+            {answeredQuestions.sort((a,b) => (a.timestamp < b.timestamp) ? 1 : -1)
+              .map((question) => (
+                <li key={question.id}>
+                  <DisplayQuestion id={question.id} answered='true'/>
+                </li>
+              ))}
+          </ul>
+        </div>
+        }
       </div>
     )
   }
