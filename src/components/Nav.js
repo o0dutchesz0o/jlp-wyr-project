@@ -1,21 +1,28 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import { NavLink, Link } from 'react-router-dom'
+import {NavLink, Link, Redirect} from 'react-router-dom'
 import {setAuthedUser} from "../actions/authedUser";
 import {setLoggedIn} from "../actions/login";
 
 class Nav extends Component {
+
   handleLogOut = (e) => {
     e.preventDefault()
     const { dispatch } = this.props
 
-    dispatch(setAuthedUser(''))
+    dispatch(setAuthedUser(null))
     dispatch(setLoggedIn(false))
+
   }
 
   render () {
-    const { user } = this.props
+    const { user, authedUser } = this.props
     const { avatarURL, name} = user
+
+    if (authedUser === null) {
+      return (<Redirect to='/' />)
+    }
+
     return (
       <nav className='nav'>
         <ul>

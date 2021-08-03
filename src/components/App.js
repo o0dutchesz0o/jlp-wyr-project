@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
 import LoadingBar from "react-redux-loading";
 import Login from "./Login";
@@ -11,6 +11,10 @@ import QuestionDetails from "./QuestionDetails";
 import AnswerQuestion from "./AnswerQuestion";
 import Leaderboard from "./Leaderboard";
 
+const NoMatch = ({ location }) => (
+  <h3>No match for <code>{location.pathname}</code></h3>
+)
+
 class App extends Component {
   componentDidMount() {
     this.props.dispatch(handleInitialData())
@@ -18,6 +22,15 @@ class App extends Component {
 
   render () {
     const { loading, isLoggedIn} = this.props
+
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        isLoggedIn === true
+          ? <Component {...props} />
+          : <Redirect to={{pathname: '/', state: { from: props.location }}} /> //todo clear out state after redirect
+      )} />
+    )
+
     return (
       <Router>
         <Fragment>
@@ -26,27 +39,25 @@ class App extends Component {
             { isLoggedIn === false
               ? <div>
                   <Route path='/' exact component={Login}/>
-                  <Redirect from='/leaderboard' to='/' />
-                  <Redirect from='/add' to='/' />
-                  <Redirect from='/leaderboard' to='/' />
-                  <Redirect from='/question/:id' to='/' />
-                  <Redirect from='/answer/:id/' to='/' />
-              </div>
-              : loading === true
-              ? null
-              : <div>
-                  <Nav />
-                  <Route path='/' exact component={HomePage}/>
-                  <Route path='/add' exact component={NewQuestion}/>
-                  <Route path='/leaderboard' exact component={Leaderboard}/>
-                  <Route path='/question/:id' exact component={QuestionDetails}/>
-                  <Route path='/answer/:id/' exact component={AnswerQuestion}/>
-                  <footer>
-                    <a href="https://icons8.com/icon/122589/manager">Manager Icon</a>&nbsp;&nbsp;
-                    <a href="https://icons8.com/icon/123623/businesswoman">Businesswoman Icon</a>&nbsp;&nbsp;
-                    <a href="https://icons8.com/icon/110479/administrator-male"> Administrator Male Icon</a> by Icons8
-                  </footer>
                 </div>
+              : loading === true
+                ? null
+                : <div>
+                    <Nav />
+                    <Switch>
+                      <PrivateRoute path='/' exact component={HomePage}/>
+                      <PrivateRoute path='/add' exact component={NewQuestion}/>
+                      <PrivateRoute path='/leaderboard' exact component={Leaderboard}/>
+                      <PrivateRoute path='/question/:id' exact component={QuestionDetails}/>
+                      <PrivateRoute path='/answer/:id/' exact component={AnswerQuestion}/>
+                      <Route component={NoMatch} />
+                    </Switch>
+                    <footer>
+                      <a href="https://icons8.com/icon/122589/manager">Manager Icon</a>&nbsp;&nbsp;
+                      <a href="https://icons8.com/icon/123623/businesswoman">Businesswoman Icon</a>&nbsp;&nbsp;
+                      <a href="https://icons8.com/icon/110479/administrator-male"> Administrator Male Icon</a> by Icons8
+                    </footer>
+                  </div>
             }
           </div>
         </Fragment>
