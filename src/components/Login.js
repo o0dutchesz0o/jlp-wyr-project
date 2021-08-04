@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import { setAuthedUser } from "../actions/authedUser";
-import {Link, Redirect, useHistory} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { setLoggedIn } from "../actions/login";
 
 class Login extends Component {
@@ -16,10 +16,9 @@ class Login extends Component {
   }
 
   render () {
-    const { users, isLoggedIn, redirectToReferrer, dispatch } = this.props
+    const { users, isLoggedIn, dispatch } = this.props
     const { authedUser } = this.state
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirect } = this.props.location.state || false
+    const { from } = this.props.location.state || { from: { pathname: '/home' } }
 
     const verifyUser = {
       isAuthenticated: isLoggedIn,
@@ -33,16 +32,13 @@ class Login extends Component {
     function LoginButton(props) {
       const { verifyUser, isAuthenticated } = props;
       let history = useHistory();
+      debugger
 
       return !isAuthenticated ? (
-        <Link to='/home' className='btn login-btn' onClick={() => {
-          verifyUser.signin(() => history.push("/home"))
+        <Link to={`${from.pathname}`} className='btn login-btn' onClick={() => {
+          verifyUser.signin(() => history.push(`/${from.pathname}` ))
         }}>Sign in</Link>
       ) : null;
-    }
-
-    if (redirect === true && isLoggedIn === true) {
-      return (<Redirect to={from} />)
     }
 
     return (
@@ -59,7 +55,7 @@ class Login extends Component {
                 <option value={userName}>{userValues.name}</option>
               ))}
               </select>
-              <LoginButton verifyUser={verifyUser} isAuthenticated={isLoggedIn} redirectToReferrer={redirectToReferrer}/>
+              <LoginButton verifyUser={verifyUser} isAuthenticated={isLoggedIn}/>
             </div>
           </div>
     )
