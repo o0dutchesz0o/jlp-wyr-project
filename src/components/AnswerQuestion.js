@@ -35,54 +35,57 @@ class AnswerQuestion extends Component {
   render () {
     const { questions, users, authedUser } = this.props
     const { toDetails } = this.state
+    
+
     const question  = questions[this.props.match.params.id]
-    const formattedQuestion = formatQuestion(question, users, authedUser)
-    const { name, avatar, optionOne, optionTwo, id } = formattedQuestion
 
-    if (question === null) {
-      return <p>This WYR does not exist</p>
-    }
+    if (question === undefined) {
+      return <Redirect to={{pathname: '/404', state: { from: this.props.location }}} />
+    } else {
+      const formattedQuestion = formatQuestion(question, users, authedUser)
+      const { name, avatar, optionOne, optionTwo, id } = formattedQuestion
 
-    if (toDetails === true) {
-      return <Redirect to={`/question/${id}`}/>
-    }
+      if (toDetails === true) {
+        return <Redirect to={`/question/${id}`}/>
+      }
 
-    return (
-      <div className='question'>
-        <p className='author'>
-          <img className='avatar' src={avatar} alt={`Avatar of ${name}`}/>
-          <p>{`Asked by ${name}:`}</p>
-        </p>
-        <div>
-          <form className='answer-question' onSubmit={this.handleSubmit}>
-            <span className='header question-header'>Would you rather...</span><br/>
-            <input
-              className='poll optionOne'
-              type='radio'
-              id='optionOne'
-              name='answerOption'
-              value='optionOne'
-              onChange={this.handleChange}
-            />
-            <label htmlFor="optionOne">{optionOne.text}</label><br/><br/>
-            <input
-              className='poll optionTwo'
-              type='radio'
-              id='optionTwo'
-              name='answerOption'
-              value='optionTwo'
-              onChange={this.handleChange}
-            />
-            <label htmlFor="optionTwo">{optionTwo.text}</label><br/><br/>
-            <button
-              className='btn poll'
-              type='submit'
-              disabled={this.state.disabled}>
-              Submit</button>
-          </form>
+      return (
+        <div className='question'>
+          <p className='author'>
+            <img className='avatar' src={avatar} alt={`Avatar of ${name}`}/>
+            <p>{`Asked by ${name}:`}</p>
+          </p>
+          <div>
+            <form className='answer-question' onSubmit={this.handleSubmit}>
+              <span className='header question-header'>Would you rather...</span><br/>
+              <input
+                className='poll optionOne'
+                type='radio'
+                id='optionOne'
+                name='answerOption'
+                value='optionOne'
+                onChange={this.handleChange}
+              />
+              <label htmlFor="optionOne">{optionOne.text}</label><br/><br/>
+              <input
+                className='poll optionTwo'
+                type='radio'
+                id='optionTwo'
+                name='answerOption'
+                value='optionTwo'
+                onChange={this.handleChange}
+              />
+              <label htmlFor="optionTwo">{optionTwo.text}</label><br/><br/>
+              <button
+                className='btn poll'
+                type='submit'
+                disabled={this.state.disabled}>
+                Submit</button>
+            </form>
+          </div>
         </div>
-      </div>
-    )
+      )
+    }
   }
 }
 
