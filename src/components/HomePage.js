@@ -26,7 +26,6 @@ class HomePage extends Component {
     ))
 
     const unansweredQuestions = formattedQuestions.filter(question => !answeredQuestions.includes(question));
-    console.log('home page state', this.state)
 
     return (
       <div>

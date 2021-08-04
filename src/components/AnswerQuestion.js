@@ -35,7 +35,6 @@ class AnswerQuestion extends Component {
   render () {
     const { questions, users, authedUser } = this.props
     const { toDetails } = this.state
-    
 
     const question  = questions[this.props.match.params.id]
 

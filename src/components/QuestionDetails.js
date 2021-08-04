@@ -7,7 +7,6 @@ import {Redirect} from "react-router-dom";
 
 class QuestionDetails extends Component {
   render () {
-    debugger
     const { questions, users, authedUser } = this.props
     const question  = questions[this.props.match.params.id]
 
