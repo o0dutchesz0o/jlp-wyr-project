@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {NavLink, Link, Redirect} from 'react-router-dom'
+import {NavLink, Link, Redirect, useHistory} from 'react-router-dom'
 import {setAuthedUser} from "../actions/authedUser";
 import {setLoggedIn} from "../actions/login";
+import isLoggedIn from "../reducers/login";
 
 class Nav extends Component {
 
@@ -10,17 +11,33 @@ class Nav extends Component {
     e.preventDefault()
     const { dispatch } = this.props
 
-    dispatch(setAuthedUser(null))
+    dispatch(setAuthedUser(''))
     dispatch(setLoggedIn(false))
 
   }
 
   render () {
-    const { user, authedUser } = this.props
+    const { user, isLoggedIn, dispatch } = this.props
     const { avatarURL, name} = user
 
-    if (authedUser === null) {
-      return (<Redirect to='/' />)
+    const verifyUser = {
+      isAuthenticated: isLoggedIn,
+      signout(cb) {
+        dispatch(setAuthedUser(''))
+        dispatch(setLoggedIn(false))
+        verifyUser.isAuthenticated = false;
+      }
+    }
+
+    function LogoutButton(props) {
+      const { verifyUser, isAuthenticated } = props;
+      let history = useHistory();
+
+      return isAuthenticated ? (
+        <Link to='/' className='log-out' onClick={() => {
+          verifyUser.signout(() => history.push("/"))
+        }}>Log Out</Link>
+      ) : null;
     }
 
     return (
@@ -38,7 +55,7 @@ class Nav extends Component {
           <li className='authed-user'>
               <img src={avatarURL} alt={`Avatar of ${name}`}/>
               <span className='user-name'>{name}</span>
-            <Link to='/' className='log-out' onClick={(e) => this.handleLogOut(e)}>Log Out</Link>
+              <LogoutButton verifyUser={verifyUser} isAuthenticated={isLoggedIn} />
           </li>
         </ul>
       </nav>
@@ -46,10 +63,11 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps({authedUser, users}) {
+function mapStateToProps({authedUser, users, isLoggedIn}) {
   const user = users[authedUser]
   return {
     authedUser,
+    isLoggedIn,
     user
   }
 }

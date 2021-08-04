@@ -36,11 +36,11 @@ class App extends Component {
         <Fragment>
           <LoadingBar style={{backgroundColor: "#9BE8B6", height: '10px'}}/>
           <div className="WYR-App">
-            { isLoggedIn === false
+            { !isLoggedIn
               ? <div>
                   <Route path='/' exact component={Login}/>
                 </div>
-              : loading === true
+              : loading
                 ? null
                 : <div>
                     <Nav />
