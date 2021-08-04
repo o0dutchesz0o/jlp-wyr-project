@@ -87,8 +87,8 @@ li {
 }
 
 .login-btn {
-  margin-left: 28%;
-  margin-top: 25px;
+  margin: 25px auto !important;
+  max-width: 250px !important;
 }
 
 .center {

@@ -12,10 +12,10 @@ class UserRank extends Component {
     return (
     <div className='user-rank'>
       <div className='row'>
-        <p className='author col-md-6'>
+        <div className='author col-md-6'>
           <img className='avatar' src={avatarURL} alt={`Avatar of ${name}`}/>
           <p>{name}</p>
-        </p>
+        </div>
         <span className='rank row col-md-6' id={`rank-${rank}`}>
           <span className='header rank-header col-md-3 offset-4'>Rank</span>
           <div className='row'>

@@ -24,10 +24,10 @@ class DisplayQuestion extends Component {
 
     return (
       <div className='question'>
-        <p className='author'>
+        <div className='author'>
           <img className='avatar' src={avatar} alt={`Avatar of ${name}`}/>
           <p>{`Asked by ${name}:`}</p>
-        </p>
+        </div>
         <div className='question-info'>
           <span className='header question-header'>Would you rather...</span>
           <p className='question-options'>{`${optionOne.text} OR ${optionTwo.text}`}</p>

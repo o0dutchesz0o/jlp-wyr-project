@@ -4,6 +4,7 @@ import {formatQuestion} from "../utils/helpers";
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import Badge from 'react-bootstrap/Badge'
 import {Redirect} from "react-router-dom";
+import Nav from './Nav'
 
 class QuestionDetails extends Component {
   render () {
@@ -24,11 +25,13 @@ class QuestionDetails extends Component {
       const optionTwoPercentage = optionTwoVotes / totalVotes * 100
 
       return (
+        <div>
+          <Nav/>
         <div className='question'>
-          <p className='author'>
+          <div className='author'>
             <img className='avatar' src={avatar} alt={`Avatar of ${name}`}/>
             <p>{`Asked by ${name}:`}</p>
-          </p>
+          </div>
           <div>
             <span className='header results-header'>Results:</span><br/>
             <span className='header question-header'>Would you rather...</span><br/>
@@ -46,6 +49,7 @@ class QuestionDetails extends Component {
             </div>
           </div>
         </div>
+      </div>
       )
     }
   }

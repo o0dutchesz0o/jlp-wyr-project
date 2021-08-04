@@ -33,20 +33,20 @@ class HomePage extends Component {
         <nav className='nav questions-nav'>
           <ul>
             <li>
-              <Link
+              <a
                     className='nav-question'
                     id='unanswered'
                     onClick={(e) => this.handleDisplayQuestions(e)}>
                     Unanswered Questions
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
+              <a
                     className='nav-question'
                     id='answered'
                     onClick={(e) => this.handleDisplayQuestions(e)}>
                     Answered Questions
-              </Link>
+              </a>
             </li>
           </ul>
         </nav>

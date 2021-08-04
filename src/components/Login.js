@@ -52,10 +52,10 @@ class Login extends Component {
             >
               <option value="" disabled>Select User</option>
               {Object.entries(users).map(([userName, userValues]) => (
-                <option value={userName}>{userValues.name}</option>
+                <option key={userName} value={userName}>{userValues.name}</option>
               ))}
               </select>
-              <LoginButton verifyUser={verifyUser} isAuthenticated={isLoggedIn}/>
+              <LoginButton className='btn login-btn' verifyUser={verifyUser} isAuthenticated={isLoggedIn}/>
             </div>
           </div>
     )
