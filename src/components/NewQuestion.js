@@ -2,6 +2,7 @@ import React, { Component} from "react";
 import { connect } from 'react-redux'
 import {handleAddQuestion} from "../actions/questions";
 import { Redirect } from 'react-router-dom'
+import Nav from "./Nav";
 
 class NewQuestion extends Component {
   state = {
@@ -36,35 +37,38 @@ class NewQuestion extends Component {
     const {optionOneText, optionTwoText, toHome } = this.state
 
     if (toHome === true) {
-      return <Redirect to='/'/>
+      return <Redirect to='/home'/>
     }
 
     return (
-      <div className='question'>
-        <span className='header question-header'>Create New Question</span>
-        <form className='new-question' onSubmit={this.handleSubmit}>
-            Complete the question:
-            <p className='wyr'>Would you rather...</p>
-            <input className='optionOneText'
-                   type='text'
-                   placeholder='Enter Option One Text Here'
-                   value={optionOneText}
-                   onChange={this.handleChange}
-            />
-            <h2><span>OR</span></h2>
-            <input className='optionTwoText'
-                   type='text'
-                   placeholder='Enter Option Two Text Here'
-                   value={optionTwoText}
-                   onChange={this.handleChange}
-            />
-            <button
-              className='btn'
-              type='submit'
-              disabled={optionOneText === '' || optionTwoText === ''}>
-              Submit
-            </button>
-        </form>
+      <div>
+        <Nav/>
+        <div className='question'>
+          <span className='header question-header'>Create New Question</span>
+          <form className='new-question' onSubmit={this.handleSubmit}>
+              Complete the question:
+              <p className='wyr'>Would you rather...</p>
+              <input className='optionOneText'
+                     type='text'
+                     placeholder='Enter Option One Text Here'
+                     value={optionOneText}
+                     onChange={this.handleChange}
+              />
+              <h2><span>OR</span></h2>
+              <input className='optionTwoText'
+                     type='text'
+                     placeholder='Enter Option Two Text Here'
+                     value={optionTwoText}
+                     onChange={this.handleChange}
+              />
+              <button
+                className='btn'
+                type='submit'
+                disabled={optionOneText === '' || optionTwoText === ''}>
+                Submit
+              </button>
+          </form>
+        </div>
       </div>
     )
   }

@@ -27,25 +27,20 @@ class App extends Component {
       <Route {...rest} render={(props) => (
         isLoggedIn === true
           ? <Component {...props} />
-          : <Redirect to={{pathname: '/', state: { from: props.location }}} /> //todo clear out state after redirect
+          : <Redirect to={{pathname: '/', state: { from: props.location, redirect: true }}} />
       )} />
     )
-
     return (
       <Router>
         <Fragment>
           <LoadingBar style={{backgroundColor: "#9BE8B6", height: '10px'}}/>
           <div className="WYR-App">
-            { !isLoggedIn
-              ? <div>
-                  <Route path='/' exact component={Login}/>
-                </div>
-              : loading
+            { loading
                 ? null
                 : <div>
-                    <Nav />
                     <Switch>
-                      <PrivateRoute path='/' exact component={HomePage}/>
+                      <Route path='/' exact component={Login}/>
+                      <PrivateRoute path='/home' exact component={HomePage}/>
                       <PrivateRoute path='/add' exact component={NewQuestion}/>
                       <PrivateRoute path='/leaderboard' exact component={Leaderboard}/>
                       <PrivateRoute path='/question/:id' exact component={QuestionDetails}/>

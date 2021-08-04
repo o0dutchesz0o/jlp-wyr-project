@@ -1,21 +1,10 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {NavLink, Link, Redirect, useHistory} from 'react-router-dom'
+import {NavLink, Link, useHistory} from 'react-router-dom'
 import {setAuthedUser} from "../actions/authedUser";
 import {setLoggedIn} from "../actions/login";
-import isLoggedIn from "../reducers/login";
 
 class Nav extends Component {
-
-  handleLogOut = (e) => {
-    e.preventDefault()
-    const { dispatch } = this.props
-
-    dispatch(setAuthedUser(''))
-    dispatch(setLoggedIn(false))
-
-  }
-
   render () {
     const { user, isLoggedIn, dispatch } = this.props
     const { avatarURL, name} = user
@@ -44,7 +33,7 @@ class Nav extends Component {
       <nav className='nav'>
         <ul>
           <li>
-            <NavLink to='/' exact activeClassName='active' className='nav-link'>Home Page</NavLink>
+            <NavLink to='/home' exact activeClassName='active' className='nav-link'>Home Page</NavLink>
           </li>
           <li>
             <NavLink to='/add' exact activeClassName='active' className='nav-link'>Add New Question</NavLink>

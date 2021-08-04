@@ -170,6 +170,16 @@ li {
   text-decoration: none;
   color: #505E6B !important;
   font-weight: bold;
+  padding: 5px;
+}
+
+.log-out:hover {
+  color: #1D2B38;
+  white-space: nowrap;
+  overflow: hidden;
+  background: #9BE8B6;
+  border-radius: 5px;
+
 }
 
 .login {

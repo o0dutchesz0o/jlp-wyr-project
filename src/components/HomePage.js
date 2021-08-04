@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import DisplayQuestion from "./DisplayQuestion";
 import {formatQuestion} from "../utils/helpers";
 import { Link } from 'react-router-dom'
+import Nav from "./Nav";
 
 class HomePage extends Component {
   state = {
@@ -29,6 +30,7 @@ class HomePage extends Component {
 
     return (
       <div>
+        <Nav />
         <nav className='nav questions-nav'>
           <ul>
             <li>
