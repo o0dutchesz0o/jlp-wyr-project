@@ -28,11 +28,11 @@ class Login extends Component {
         verifyUser.isAuthenticated = true;
       }
     }
-    debugger
+    
     function LoginButton(props) {
       const { verifyUser, isAuthenticated } = props;
       let history = useHistory();
-      debugger
+      
 
       return !isAuthenticated ? (
         <Link to={`${from.pathname}`} className='btn login-btn' onClick={() => {
@@ -63,7 +63,7 @@ class Login extends Component {
 }
 
 function mapStateToProps({users, isLoggedIn}) {
-  debugger
+  
   return {
     users,
     isLoggedIn,

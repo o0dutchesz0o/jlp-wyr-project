@@ -33,6 +33,16 @@ footer {
   height:25px;
 }
 
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style-type: none;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
 .user-select {
   padding: 25px 0;
 }
@@ -115,6 +125,9 @@ footer {
   padding-left: 0;
 }
 
+.page-not-found {
+  padding: 25px;
+}
 .questions-nav {
   margin: auto 25%;
 }
@@ -145,17 +158,6 @@ footer {
   overflow: hidden;
   background: #9BE8B6;
   border-radius: 5px;
-}
-
-
-ul {
-  padding-left: 0;
-}
-
-li {
-  list-style-type: none;
-  padding: 0 10px;
-  text-decoration: none;
 }
 
 /*APP*/

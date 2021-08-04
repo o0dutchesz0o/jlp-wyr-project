@@ -4,16 +4,12 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from "react-router-d
 import { handleInitialData } from "../actions/shared";
 import LoadingBar from "react-redux-loading";
 import Login from "./Login";
-import Nav from './Nav'
 import HomePage from './HomePage'
 import NewQuestion from './NewQuestion'
 import QuestionDetails from "./QuestionDetails";
 import AnswerQuestion from "./AnswerQuestion";
 import Leaderboard from "./Leaderboard";
-
-const NoMatch = ({ location }) => (
-  <h3>No match for <code>{location.pathname}</code></h3>
-)
+import PageNotFound from "./PageNotFound";
 
 class App extends Component {
   componentDidMount() {
@@ -45,7 +41,7 @@ class App extends Component {
                       <PrivateRoute path='/leaderboard' exact component={Leaderboard}/>
                       <PrivateRoute path='/question/:id' exact component={QuestionDetails}/>
                       <PrivateRoute path='/answer/:id/' exact component={AnswerQuestion}/>
-                      <Route component={NoMatch} />
+                      <Route path='/404' exact component={PageNotFound} />
                     </Switch>
                     <footer>
                       <a href="https://icons8.com/icon/122589/manager">Manager Icon</a>&nbsp;&nbsp;

@@ -6,6 +6,7 @@ import Badge from 'react-bootstrap/Badge'
 
 class QuestionDetails extends Component {
   render () {
+    debugger
     const { questions, users, authedUser } = this.props
     const question  = questions[this.props.match.params.id]
     const formattedQuestion = formatQuestion(question, users, authedUser)
